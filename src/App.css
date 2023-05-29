@@ -2,7 +2,9 @@
 .center {
   text-align: center;
 }
-
+.pointer {
+  cursor: pointer;
+}
 .App {
   padding: 0 1rem;
 }

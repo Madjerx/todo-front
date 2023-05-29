@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./listedTask.css";
 
-const ListedTask = ({ task, onTaskCheck }) => {
+const ListedTask = ({ task, onTaskCheck, onTaskClick }) => {
   const [mockedCheck, setMockedCheck] = useState(task.done);
 
   useEffect(() => {
@@ -14,6 +14,11 @@ const ListedTask = ({ task, onTaskCheck }) => {
     onTaskCheck(task.id, updatedCheck); // Notify parent
   };
 
+  const onShowDetails = () => {
+    console.log("user wants to edit task id ", task.id);
+    onTaskClick(task.id); // Notify parent
+  };
+
   return (
     <li>
       <input
@@ -23,9 +28,12 @@ const ListedTask = ({ task, onTaskCheck }) => {
         checked={mockedCheck}
         onChange={() => onCheck()}
       />
-      <span className={mockedCheck ? "completed grid-item" : "grid-item"}>
-        {task.title}
-      </span>
+      <div
+        onClick={() => onShowDetails()}
+        className={mockedCheck ? "completed grid-item" : "grid-item"}
+      >
+        <span className="pointer">{task.title}</span>
+      </div>
       <span
         className={`${
           ["white", "yellow", "orange", "red"][task.priority]
@@ -33,7 +41,7 @@ const ListedTask = ({ task, onTaskCheck }) => {
       >
         <i className="priority-icon bx bxs-circle"></i>{" "}
       </span>
-      <i className="bx bx-pencil grid-item"></i>
+      <i className="bx bx-pencil grid-item pointer" onClick={() => onShowDetails()}></i>
       <i className="bx bx-trash-alt grid-item"></i>
     </li>
   );
