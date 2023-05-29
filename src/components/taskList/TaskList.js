@@ -8,6 +8,16 @@ const TaskList = () => {
   const [checkedBox, setCheckedBox] = useState(false);
   console.log("init todos = ", todos);
 
+  const sortTodos = (array) => {
+    const sortedTodos = [...array];
+    sortedTodos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort by create attribute
+    sortedTodos.sort((a, b) => a.done - b.done); // Sort by Done attribute
+    return sortedTodos;
+  };
+  useEffect(() => {
+    setTodos(sortTodos(todos));
+  }, []);
+
   useEffect(() => {
     if (todos.every((task) => task.done)) {
       setCheckedBox(true);
@@ -15,6 +25,7 @@ const TaskList = () => {
       setCheckedBox(false);
     }
   }, [todos]);
+
   const onCheckAll = () => {
     const updatedTodos = todos.map((task) => {
       if (todos.every((task) => task.done)) {
@@ -47,12 +58,10 @@ const TaskList = () => {
       }
       return task;
     });
-    setTodos(updatedTodos);
-  };
 
-  useEffect(() => {
-    console.log("todos updated ; ", todos);
-  }, [todos]);
+    const sortedTodos = sortTodos(updatedTodos);
+    setTodos(sortedTodos);
+  };
 
   return (
     <>
