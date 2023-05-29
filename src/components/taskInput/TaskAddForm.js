@@ -1,16 +1,16 @@
 import React from "react";
+import './taskAddForm.css'
 
 const TaskInput = () => {
   return (
     <>
-      <p>Qu'avez-vous à faire ?</p>
-      <form autoComplete="off">
+      <form className="center" autoComplete="off">
         <input
           type="text"
           name="todos"
           id="todos"
           required
-          placeholder="Add Task"
+          placeholder="New Task"
         />
 
         <button type="submit">Add</button>

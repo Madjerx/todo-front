@@ -1,0 +1,10 @@
+ul {
+  padding: 0;
+}
+
+.attribute-li {
+  font-size: 10px;
+  margin-bottom: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #000;
+}

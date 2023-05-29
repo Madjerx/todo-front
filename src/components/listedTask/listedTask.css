@@ -1,0 +1,23 @@
+.completed {
+  text-decoration: line-through;
+}
+
+li {
+  display: grid;
+  grid-template-columns: 0.5fr 6fr 0.5fr 0.5fr 0.5fr; /* item2 is four times wider */
+  grid-gap: 8px; /* Adjust the gap between grid items as needed */
+}
+
+input[type="checkbox"] {
+  height: 1rem;
+}
+
+.grid-item {
+   margin-top: auto;
+   margin-bottom: auto;
+
+}
+
+.priority-item {
+  margin: auto;
+}

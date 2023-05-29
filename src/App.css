@@ -1,7 +1,11 @@
-.App {
+.App h1,
+.center {
   text-align: center;
 }
 
+.App {
+  padding: 0 1rem;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
