@@ -6,7 +6,6 @@ const ListedTask = ({ task, onTaskCheck }) => {
 
   useEffect(() => {
     setMockedCheck(task.done);
-    console.log("mockedCheck  = ", mockedCheck);
   }, [task]);
 
   const onCheck = () => {
@@ -14,8 +13,6 @@ const ListedTask = ({ task, onTaskCheck }) => {
     setMockedCheck(updatedCheck);
     onTaskCheck(task.id, updatedCheck); // Notify parent
   };
-
-  console.log("called ListedTask = ", task);
 
   return (
     <li>
@@ -29,7 +26,13 @@ const ListedTask = ({ task, onTaskCheck }) => {
       <span className={mockedCheck ? "completed grid-item" : "grid-item"}>
         {task.title}
       </span>
-      <span className="grid-item priority-item">{task.priority}</span>
+      <span
+        className={`${
+          ["white", "yellow", "orange", "red"][task.priority]
+        } green-${task.done}`}
+      >
+        <i className="priority-icon bx bxs-circle"></i>{" "}
+      </span>
       <i className="bx bx-pencil grid-item"></i>
       <i className="bx bx-trash-alt grid-item"></i>
     </li>

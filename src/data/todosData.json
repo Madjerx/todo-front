@@ -6,7 +6,7 @@
 
     "description": "Description 1",
 
-    "priority": 4,
+    "priority": 0,
 
     "done": true,
 
@@ -40,7 +40,7 @@
 
     "priority": 3,
 
-    "done": false,
+    "done": true,
 
     "createdAt": "2023-05-26T15:58:10.000Z",
 
@@ -54,7 +54,7 @@
 
     "description": "Description 4",
 
-    "priority": 4,
+    "priority": 2,
 
     "done": false,
 

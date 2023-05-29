@@ -13,11 +13,32 @@ input[type="checkbox"] {
 }
 
 .grid-item {
-   margin-top: auto;
-   margin-bottom: auto;
-
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-.priority-item {
-  margin: auto;
+.priority-icon { 
+  text-align: center;
+}
+
+.white {
+  color: white;
+}
+.yellow {
+  color: yellow;
+}
+.orange {
+  color: orange;
+}
+.red {
+  color: red;
+}
+
+.green-true {
+  color: green;
+}
+
+.bxs-circle:before {
+  border: solid 1px grey;
+  border-radius: 999px;
 }

@@ -6,16 +6,20 @@ import "./taskList.css";
 const TaskList = () => {
   const [todos, setTodos] = useState(data);
   const [checkedBox, setCheckedBox] = useState(false);
-  console.log("init todos = ", todos);
 
   const sortTodos = (array) => {
-    const sortedTodos = [...array];
-    sortedTodos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort by create attribute
-    sortedTodos.sort((a, b) => a.done - b.done); // Sort by Done attribute
-    return sortedTodos;
+    const undoneTodos = array.filter((item) => !item.done);
+    const doneTodos = array.filter((item) => item.done);
+
+    undoneTodos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    doneTodos.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+    return [...undoneTodos, ...doneTodos];
   };
+
   useEffect(() => {
-    setTodos(sortTodos(todos));
+    const sortedTodos = sortTodos(todos);
+    setTodos(sortedTodos);
   }, []);
 
   useEffect(() => {
@@ -42,13 +46,12 @@ const TaskList = () => {
       }
       return task;
     });
-    console.log("new todos = ", updatedTodos);
-    setTodos(updatedTodos);
+    const sortedTodos = sortTodos(updatedTodos);
+    setTodos(sortedTodos);
   };
 
   //Update todos when a todo is updated from children component
   const handleTaskCheck = (taskId, isChecked) => {
-    console.log("handlecheck called with", taskId, isChecked);
     const updatedTodos = todos.map((task) => {
       if (task.id === taskId) {
         return {
