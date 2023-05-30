@@ -9,9 +9,7 @@ const ListedTask = ({ task, onTaskCheck, onTaskClick }) => {
   }, [task]);
 
   const onCheck = () => {
-    const updatedCheck = !mockedCheck;
-    setMockedCheck(updatedCheck);
-    onTaskCheck(task.id, updatedCheck); // Notify TaskList parent
+    onTaskCheck(task.id, !mockedCheck); // Notify TaskList parent
   };
 
   const onShowDetails = () => {
