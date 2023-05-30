@@ -11,12 +11,12 @@ const ListedTask = ({ task, onTaskCheck, onTaskClick }) => {
   const onCheck = () => {
     const updatedCheck = !mockedCheck;
     setMockedCheck(updatedCheck);
-    onTaskCheck(task.id, updatedCheck); // Notify parent
+    onTaskCheck(task.id, updatedCheck); // Notify TaskList parent
   };
 
   const onShowDetails = () => {
     console.log("user wants to edit task id ", task.id);
-    onTaskClick(task.id); // Notify parent
+    onTaskClick(task.id); // Notify TaskList parent
   };
 
   return (

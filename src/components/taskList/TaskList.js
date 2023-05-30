@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import data from "../../data/todosData.json";
 import ListedTask from "../listedTask/ListedTask";
 import "./taskList.css";
+import { getAllTasks, patchOneTask } from "../../services/apiServices";
 
 const TaskList = () => {
   const [todos, setTodos] = useState([]);
@@ -13,28 +14,27 @@ const TaskList = () => {
     const doneTodos = array.filter((item) => item.done);
 
     undoneTodos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    doneTodos.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    doneTodos.sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt));
 
     console.log([...undoneTodos, ...doneTodos]);
     return [...undoneTodos, ...doneTodos];
   };
 
-  useEffect(() => {
-    // call backend getAll Route
-    const getTodos = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:8080/api/tasks/getTasks"
-        );
-        const jsonTodo = await response.json();
-        const sortedTodos = sortTodos(jsonTodo);
+  const fetchAllTasks = () => {
+    getAllTasks()
+      .then((resp) => {
+        const sortedTodos = sortTodos(resp);
         setTodos(sortedTodos);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+      })
+      .catch((error) => {
+        // Handle error when bad request or no server response
+        console.error("Error getting all tasks:", error);
+      });
+  };
 
-    getTodos();
+  useEffect(() => {
+    // call backend getAll Route at first render
+    fetchAllTasks();
   }, []);
 
   useEffect(() => {
@@ -45,60 +45,48 @@ const TaskList = () => {
     }
   }, [todos]);
 
+  //Update all task done attribute when click checkbox
   const onCheckAll = () => {
-    const updatedTodos = todos.map((task) => {
-      if (todos.every((task) => task.done)) {
-        setCheckedBox(false);
-        return {
-          ...task,
-          done: false,
-        };
-      } else if (task.done === false) {
-        return {
-          ...task,
-          done: true,
-        };
-      }
-      return task;
-    });
-    const sortedTodos = sortTodos(updatedTodos);
-    setTodos(sortedTodos);
+    const opositeCheckbox = !checkedBox;
+
+    setCheckedBox(opositeCheckbox);
+
+    if (opositeCheckbox) {
+      todos.forEach((task) => {
+        if (!task.done) {
+          task.done = true;
+          handleTaskCheck(task.id, task.done);
+        }
+      });
+    } else {
+      todos.forEach((task) => {
+        if (task.done) {
+          task.done = false;
+          handleTaskCheck(task.id, task.done);
+        }
+      });
+    }
+    fetchAllTasks();
   };
 
-  //Update todos when a todo is updated from children component
+  //Update todos when a todo is updated from children listedTask component
   const handleTaskCheck = async (taskId, isChecked) => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/api/tasks/${taskId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ done: isChecked }), // JSON body data
-        }
-      );
-
-      console.log("resp = ", response);
-
-      const updatedTodos = todos.map((task) => {
-        if (task.id === taskId) {
-          return {
-            ...task,
-            done: isChecked,
-          };
-        }
-        return task;
-      });
-
-      const sortedTodos = sortTodos(updatedTodos);
-      setTodos(sortedTodos);
+      await patchOneTask(taskId, isChecked);
+      try {
+        fetchAllTasks();
+      } catch (error) {
+        console.log(
+          `Failed to refresh list after working patch task id ${taskId}:`,
+          error
+        );
+      }
     } catch (error) {
-      // Handle error
-      console.error("Error patching data:", error);
+      console.error("Error patching task:", error);
     }
   };
 
+  //Method called when click on Task Title
   const handleTaskClick = (id) => {
     console.log("display detail for task id", id);
     setTaskToEdit(id);
