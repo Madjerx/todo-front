@@ -1,9 +1,11 @@
-form {
+.first-line {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 form input {
-  flex: 2;
+  flex: 3;
   border: none;
   outline: none;
   border: 1px solid #00000025;
@@ -11,8 +13,30 @@ form input {
 }
 
 form input,
-form button {
+form button,
+form select,
+form textarea {
   border-radius: 25px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+form textarea {
+  border: none;
+  outline: none;
+  border: 1px solid #00000025;
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+form select {
+  flex: 1;
+  border: none;
+  outline: none;
+  border: 1px solid #00000025;
+  padding: 0.5rem;
 }
 
 form button {
@@ -20,5 +44,21 @@ form button {
   color: #fff;
   border: none;
   outline: none;
-  flex: 1;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.button-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.1rem;
+}
+
+.selected-grey {
+  color: grey;
+}
+/* For smaller screen */
+@media screen and (max-width: 768px) {
+  form button {
+    width: 100%;
+  }
 }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ListedTask from "../listedTask/ListedTask";
+import TaskAddForm from "../taskInput/TaskAddForm";
 import "./taskList.css";
-import { getAllTasks, patchOneTask } from "../../services/apiServices";
+import { getAllTasks, patchOneTask, postOneTask } from "../../services/apiServices";
 
 const TaskList = ({ taskToParent }) => {
   const [todos, setTodos] = useState([]);
@@ -90,6 +91,23 @@ const TaskList = ({ taskToParent }) => {
     taskToParent(task);
   };
 
+  //Method called to post new task after from submit from TaskAddForm children component
+  const handleAddTask = async (taskTitle, priority, description) => {
+    try {
+      await postOneTask(taskTitle, priority, description);
+      try {
+        fetchAllTasks();
+      } catch (error) {
+        console.log(
+          `Failed to refresh list after adding new task`,
+          error
+        );
+      }
+    } catch (error) {
+      console.error("Error posting task:", error);
+    }
+  }
+
   return (
     <>
       <ul className="todo-list">
@@ -112,6 +130,8 @@ const TaskList = ({ taskToParent }) => {
           />
         ))}
       </ul>
+      <p className="center">Another thing to do ?</p>
+      <TaskAddForm addTask={handleAddTask} />
     </>
   );
 };

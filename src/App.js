@@ -1,6 +1,5 @@
 import "./App.css";
 import TaskList from "./components/taskList/TaskList";
-import TaskAddForm from "./components/taskInput/TaskAddForm";
 import TodoDetails from "./components/todoDetails/TodoDetails";
 import { useState } from "react";
 
@@ -28,8 +27,6 @@ function App() {
       <div className="todo">
         <p className="center">What to do today ?</p>
         <TaskList taskToParent={taskToDisplayDetails} />
-        <p className="center">Another thing to do ?</p>
-        <TaskAddForm />
       </div>
       {toDetails && (
         <TodoDetails onClose={taskToDisplayDetails} task={toDetails} />

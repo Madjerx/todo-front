@@ -14,3 +14,17 @@ export const patchOneTask = (taskId, isChecked) => {
     body: JSON.stringify({ done: isChecked }),
   }).then((response) => response.json());
 };
+
+export const postOneTask = (taskTitle, priority, description) => {
+  return fetch(`${API_URL}addTask`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: taskTitle,
+      priority: priority,
+      description: description,
+    }),
+  }).then((response) => response.json());
+};
