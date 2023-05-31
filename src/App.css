@@ -20,6 +20,15 @@
   pointer-events: none;
 }
 
+button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import ListedTask from "../listedTask/ListedTask";
 import TaskAddForm from "../taskInput/TaskAddForm";
 import "./taskList.css";
-import { getAllTasks, patchOneTask, postOneTask } from "../../services/apiServices";
+import {
+  deleteOneTask,
+  getAllTasks,
+  patchOneTask,
+  postOneTask,
+} from "../../services/apiServices";
 
 const TaskList = ({ taskToParent }) => {
   const [todos, setTodos] = useState([]);
@@ -98,15 +103,26 @@ const TaskList = ({ taskToParent }) => {
       try {
         fetchAllTasks();
       } catch (error) {
-        console.log(
-          `Failed to refresh list after adding new task`,
-          error
-        );
+        console.log(`Failed to refresh list after adding new task`, error);
       }
     } catch (error) {
       console.error("Error posting task:", error);
     }
-  }
+  };
+
+  
+  const handleTaskDelete = async (taskId) => {
+    try {
+      await deleteOneTask(taskId);
+      try {
+        fetchAllTasks();
+      } catch (error) {
+        console.log(`Failed to refresh list after delete task`, error);
+      }
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
 
   return (
     <>
@@ -127,6 +143,7 @@ const TaskList = ({ taskToParent }) => {
             key={todo.id}
             onTaskCheck={handleTaskCheck}
             onTaskClick={handleTaskClick}
+            onTaskDelete={handleTaskDelete}
           />
         ))}
       </ul>

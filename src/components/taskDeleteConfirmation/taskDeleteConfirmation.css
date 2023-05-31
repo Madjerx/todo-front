@@ -1,0 +1,14 @@
+.confirmation {
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  gap: 2px;
+}
+
+.confirm-no {
+  font-style: italic;
+  color: red;
+}
+.confirm-yes {
+  text-decoration: underline;
+}

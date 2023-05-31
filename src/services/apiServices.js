@@ -28,3 +28,9 @@ export const postOneTask = (taskTitle, priority, description) => {
     }),
   }).then((response) => response.json());
 };
+
+export const deleteOneTask = (taskId) => {
+  return fetch(`${API_URL}${taskId}`, {
+    method: "DELETE",
+  });
+};

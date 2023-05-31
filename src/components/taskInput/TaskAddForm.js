@@ -67,7 +67,7 @@ const TaskInput = ({ addTask }) => {
           ></textarea>
         </div>
         <div className="button-wrap">
-          <button type="submit">Add</button>
+          <button className="pointer" type="submit">Add</button>
         </div>
       </form>
     </>

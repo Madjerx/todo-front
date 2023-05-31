@@ -1,6 +1,7 @@
 import "./App.css";
 import TaskList from "./components/taskList/TaskList";
 import TodoDetails from "./components/todoDetails/TodoDetails";
+import TaskDeleteConfirmaton from "./components/taskDeleteConfirmation/TaskDeleteConfirmation";
 import { useState } from "react";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       setToDetails(task);
     }
   };
+
   return (
     <div className="App">
       <h1>Todo List</h1>
