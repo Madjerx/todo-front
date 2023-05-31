@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import data from "../../data/todosData.json";
 import ListedTask from "../listedTask/ListedTask";
 import "./taskList.css";
 import { getAllTasks, patchOneTask } from "../../services/apiServices";
 
-const TaskList = () => {
+const TaskList = ({ taskToParent }) => {
   const [todos, setTodos] = useState([]);
   const [checkedBox, setCheckedBox] = useState(false);
-  const [taskToEdit, setTaskToEdit] = useState(null);
 
   const sortTodos = (array) => {
     const undoneTodos = array.filter((item) => !item.done);
@@ -87,9 +85,9 @@ const TaskList = () => {
   };
 
   //Method called when click on Task Title
-  const handleTaskClick = (id) => {
-    console.log("display detail for task id", id);
-    setTaskToEdit(id);
+  const handleTaskClick = (task) => {
+    console.log("display detail for task id", task);
+    taskToParent(task);
   };
 
   return (

@@ -13,8 +13,8 @@ const ListedTask = ({ task, onTaskCheck, onTaskClick }) => {
   };
 
   const onShowDetails = () => {
-    console.log("user wants to edit task id ", task.id);
-    onTaskClick(task.id); // Notify TaskList parent
+    console.log("user wants to edit task id ", task);
+    onTaskClick(task); // Notify TaskList parent
   };
 
   return (

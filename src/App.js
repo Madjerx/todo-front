@@ -1,17 +1,39 @@
 import "./App.css";
 import TaskList from "./components/taskList/TaskList";
 import TaskAddForm from "./components/taskInput/TaskAddForm";
+import TodoDetails from "./components/todoDetails/TodoDetails";
+import { useState } from "react";
 
 function App() {
+  //const that handle display of Details window
+  const [toDetails, setToDetails] = useState(null);
+
+  //Method called when click on a Task from Tasklist children component
+  //or from TodoDetails children component
+  const taskToDisplayDetails = (task) => {
+    console.log("taskToDisplayDetails called");
+    if (toDetails != null) {
+      console.log("taskToDisplayDetails 1");
+
+      setToDetails(null);
+    } else {
+      console.log("taskToDisplayDetails 2");
+
+      setToDetails(task);
+    }
+  };
   return (
     <div className="App">
       <h1>Todo List</h1>
       <div className="todo">
         <p className="center">What to do today ?</p>
-        <TaskList />
+        <TaskList taskToParent={taskToDisplayDetails} />
         <p className="center">Another thing to do ?</p>
         <TaskAddForm />
       </div>
+      {toDetails && (
+        <TodoDetails onClose={taskToDisplayDetails} task={toDetails} />
+      )}
     </div>
   );
 }
