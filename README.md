@@ -1,7 +1,7 @@
 ## mockedData branch
 
-On this branch you can use the Todo List React App with a Mocked Api Service
-You can git clone it or go to the github page to test it : https://github.com/Madjerx/todo-front
+On this branch you can use the Todo List React App with a Mocked Api Service.
+You can git clone it or go to the github page to test it : [https://github.com/Madjerx/todo-front](https://madjerx.github.io/todo-front/)
 
 ### USER STORY 1 : List my TODOs
 
