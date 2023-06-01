@@ -1,7 +1,6 @@
-## mockedData branch
+## testBranch branch
 
-On this branch you can use the Todo List React App with a Mocked Api Service.
-You can git clone it or go to the github page to test it : [https://github.com/Madjerx/todo-front](https://madjerx.github.io/todo-front/)
+On this branch you can use the 'npm test' script to run tests of the TodoDetails component.
 
 ### USER STORY 1 : List my TODOs
 
