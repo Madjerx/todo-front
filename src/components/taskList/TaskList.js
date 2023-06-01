@@ -9,6 +9,13 @@ import {
   postOneTask,
 } from "../../services/apiServices";
 
+import {
+  mockedDeleteOneTask,
+  mockedGetAllTasks,
+  mockedPatchOneTask,
+  mockedPostOneTask,
+} from "../../services/mockedApi";
+
 const TaskList = ({ taskToParent }) => {
   const [todos, setTodos] = useState([]);
   const [checkedBox, setCheckedBox] = useState(false);
@@ -24,7 +31,7 @@ const TaskList = ({ taskToParent }) => {
   };
 
   const fetchAllTasks = () => {
-    getAllTasks()
+    mockedGetAllTasks()
       .then((resp) => {
         const sortedTodos = sortTodos(resp);
         setTodos(sortedTodos);
@@ -75,7 +82,7 @@ const TaskList = ({ taskToParent }) => {
   //Update todos when a todo is updated from children listedTask component
   const handleTaskCheck = async (taskId, isChecked) => {
     try {
-      await patchOneTask(taskId, isChecked);
+      await mockedPatchOneTask(taskId, isChecked);
       try {
         fetchAllTasks();
       } catch (error) {
@@ -97,7 +104,7 @@ const TaskList = ({ taskToParent }) => {
   //Method called to post new task after from submit from TaskAddForm children component
   const handleAddTask = async (taskTitle, priority, description) => {
     try {
-      await postOneTask(taskTitle, priority, description);
+      await mockedPostOneTask(taskTitle, priority, description);
       try {
         fetchAllTasks();
       } catch (error) {
@@ -108,10 +115,9 @@ const TaskList = ({ taskToParent }) => {
     }
   };
 
-  
   const handleTaskDelete = async (taskId) => {
     try {
-      await deleteOneTask(taskId);
+      await mockedDeleteOneTask(taskId);
       try {
         fetchAllTasks();
       } catch (error) {
