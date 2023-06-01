@@ -45,7 +45,7 @@ const TaskInput = ({ addTask }) => {
           />
 
           <select
-            className={priority === 0 && "selected-grey"}
+            className={priority === 0 ? "selected-grey" : ""}
             value={priority}
             onChange={handlePriorityChange}
           >
@@ -67,7 +67,9 @@ const TaskInput = ({ addTask }) => {
           ></textarea>
         </div>
         <div className="button-wrap">
-          <button className="pointer" type="submit">Add</button>
+          <button className="pointer" type="submit">
+            Add
+          </button>
         </div>
       </form>
     </>

@@ -5,7 +5,6 @@ export const getAllTasks = () => {
 };
 
 export const patchOneTask = (taskId, isChecked) => {
-  console.log("call patch for task id", taskId);
   return fetch(`${API_URL}${taskId}`, {
     method: "PATCH",
     headers: {

@@ -1,7 +1,6 @@
 import "./App.css";
 import TaskList from "./components/taskList/TaskList";
 import TodoDetails from "./components/todoDetails/TodoDetails";
-import TaskDeleteConfirmaton from "./components/taskDeleteConfirmation/TaskDeleteConfirmation";
 import { useState } from "react";
 
 function App() {
@@ -11,14 +10,9 @@ function App() {
   //Method called when click on a Task from Tasklist children component
   //or from TodoDetails children component
   const taskToDisplayDetails = (task) => {
-    console.log("taskToDisplayDetails called");
     if (toDetails != null) {
-      console.log("taskToDisplayDetails 1");
-
       setToDetails(null);
     } else {
-      console.log("taskToDisplayDetails 2");
-
       setToDetails(task);
     }
   };

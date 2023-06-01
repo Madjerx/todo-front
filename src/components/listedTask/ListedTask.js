@@ -15,12 +15,10 @@ const ListedTask = ({ task, onTaskCheck, onTaskClick, onTaskDelete }) => {
   };
 
   const onShowDetails = () => {
-    console.log("user wants to edit task id ", task.id);
     onTaskClick(task); // Notify TaskList parent
   };
 
   const onDelete = () => {
-    console.log("user wants to delete task id ", task.id);
     setToDeleteConfirmation(true);
   };
 
@@ -48,10 +46,10 @@ const ListedTask = ({ task, onTaskCheck, onTaskClick, onTaskDelete }) => {
       </div>
       <span
         className={`${
-          ["white", "yellow", "orange", "red"][task.priority]
-        } green-${task.done}`}
+          ["grey", "blue", "orange", "red"][task.priority]
+        } green-${task.done} priority-container`}
       >
-        <i className="priority-icon bx bxs-circle"></i>{" "}
+        <i className="priority-icon bx bxs-circle"></i>
       </span>
       <i
         className="bx bx-pencil grid-item pointer"

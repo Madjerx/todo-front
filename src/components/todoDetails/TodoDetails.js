@@ -34,10 +34,10 @@ const TodoDetails = ({ onClose, task }) => {
           <p>Priority : </p>
           <span
             className={`${
-              ["white", "yellow", "orange", "red"][task.priority]
-            } green-${task.done}`}
+              ["grey", "blue", "orange", "red"][task.priority]
+            } green-${task.done} priority-container`}
           >
-            <i className="priority-icon bx bxs-circle"></i>{" "}
+            <i className="priority-icon bx bxs-circle"></i>
           </span>
         </div>
         <p className="description-data">Description : {!task.description && 'Aucune'}{task.description}</p>

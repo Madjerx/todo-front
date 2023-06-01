@@ -21,24 +21,19 @@ input[type="checkbox"] {
   text-align: center;
 }
 
-.white {
-  color: white;
+.grey {
+  color: rgb(222, 221, 221);
 }
-.yellow {
-  color: yellow;
+.blue {
+  color: rgb(16, 209, 247);
 }
 .orange {
-  color: orange;
+  color: rgb(255, 136, 0);
 }
 .red {
-  color: red;
+  color: rgb(255, 43, 43);
 }
 
 .green-true {
-  color: green;
-}
-
-.bxs-circle:before {
-  border: solid 1px grey;
-  border-radius: 999px;
+  color: rgb(70, 233, 70);
 }

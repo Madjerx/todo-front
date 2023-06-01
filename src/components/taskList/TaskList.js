@@ -20,7 +20,6 @@ const TaskList = ({ taskToParent }) => {
     undoneTodos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     doneTodos.sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt));
 
-    console.log([...undoneTodos, ...doneTodos]);
     return [...undoneTodos, ...doneTodos];
   };
 
@@ -92,7 +91,6 @@ const TaskList = ({ taskToParent }) => {
 
   //Method called when click on Task Title
   const handleTaskClick = (task) => {
-    console.log("display detail for task id", task);
     taskToParent(task);
   };
 
